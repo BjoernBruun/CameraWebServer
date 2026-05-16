@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "esp_camera.h"
 #include <WiFi.h>
-#include <cstdlib>
 
 // ===========================
 // Select camera model in board_config.h
@@ -11,8 +10,13 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char *ssid = std::getenv("SECRET_SSID");
-const char *password = std::getenv("SECRET_PASS");
+
+#ifndef WIFI_SSID
+#error WIFI_SSID is NOT defined
+#endif
+
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_PASSWORD;
 
 void startCameraServer();
 void setupLedFlash();
